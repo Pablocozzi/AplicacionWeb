@@ -3,29 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Ebooks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="./index.html">
-                <img src="./Images/wonder book.png" alt="logo" style="width: 200px; height: 200px;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="./index.html"><img src="./Images/wonder book.png" alt="logo" style="width: 50px; height: 50px;"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./cocina.html">Cocina</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./deportes.html">Deportes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./ficcion.html">Ciencia ficcion</a></a>
+                </li>
+                <li class="nav-item"> 
+                    <a  class="nav-link" href="./login.html">Ingresa</a>
+                </li>
+            </ul>            
+            <a href="./login.html" class="btn btn-danger">
+                <i class="bi bi-box-arrow-in-left"></i>
             </a>
-            <ul>
-                <li> <a href="./cocina.html">Cocina</a></li>
-                <li> <a href="./deportes.html">Deportes</a></li>
-                <li> <a href="./ficcion.html">Ciencia ficcion</a></li>
-                <li> <a href="./login.html" target="_blank">Ingresa</a></li>
-            </ul>
-            <a href="./index.html">
-                <img src="./Images/logout.png" alt="logout" style="width: 80px; height: 80px;">
-            </a>
-        </nav>
-    </header>
-    <main>
-        <h1>Bienvenidos la mejor tienda de eBooks</h1>
-        <p>Aquí encontrarás productos increíbles.</p>
-    </main>
-    
+        </div>
+    </nav>
+    <div class="container text-center mt-5">
+        <h1>Bienvenidos a la mejor tienda de eBooks</h1>
+        <h3>Aquí encontrarás productos increíbles.</h3>
+        <p>
+            Que el lugar y el momento de lectura sean dónde y cuándo quieras. Los eBooks son tus mejores aliados para aprovechar cada momento libre al máximo y llevar tu biblioteca siempre contigo.
+        </p>
+    </div>
+
+    <section class="container mt-5">
+        <h2 class="text-center mb-4">Novedades</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="./Images/la-biblia-de-los-caidos.jpg" class="card-img-top" alt="La Biblia de los Caídos">
+                    <div class="card-body">
+                        <h5 class="card-title">La Biblia de los Caídos</h5>
+                        <p class="card-text">de Fernando Trujillo.</p>
+                        <p class="card-text-categoria">Categoria: Ciencia Ficcion.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="./Images/el-mundial-de-messi-y-de-la-argentina-de-scaloni.jpg" class="card-img-top" alt="EL MUNDIAL DE MESSI y de la Argentina de Scaloni">
+                    <div class="card-body">
+                        <h5 class="card-title">EL MUNDIAL DE MESSI y de la Argentina de Scaloni</h5>
+                        <p class="card-text">de Alejandro Wall, Gastón Edul</p>
+                        <p class="card-text-categoria">Categoria: Deportes.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3: Libro nuevo -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="./Images/rafa-roger.jpg" class="card-img-top" alt="Rafa & Roger">
+                    <div class="card-body">
+                        <h5 class="card-title">Rafa & Roger</h5>
+                        <p class="card-text">de Antonio Arenas, Rafael Plaza</p>
+                        <p class="card-text-categoria">Categoria: Deportes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
