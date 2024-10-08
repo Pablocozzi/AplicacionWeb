@@ -14,24 +14,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     // Redirige al login
     window.location.href = "./login.html";
 });
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault();  // Evita el envío del formulario por defecto
 
-        const emailLogin = document.getElementById('email').value;
-        const passwordLogin = document.getElementById('password').value;
+    
 
-        const storedEmail = localStorage.getItem('registeredEmail');
-        const storedPassword = localStorage.getItem('registeredPassword');
-        alert('registeredEmail')
-        // Simulación de autenticación
-        if(emailLogin === storedEmail && passwordLogin === storedPassword) {
-            alert("Credenciales correctas");
-            localStorage.setItem('isLoggedIn', 'true');  // Guarda el estado de login
-            window.location.href = "./index.html";  // Redirige a la página principal
-        } else {
-            alert("Credenciales incorrectas");
-        }
-    })
-});
 
