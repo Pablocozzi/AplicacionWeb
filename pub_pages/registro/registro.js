@@ -12,9 +12,8 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     alert("Registro exitoso. Ahora puedes iniciar sesión.");
     
     // Redirige al login
-    window.location.href = "./login.html";
+    window.location.href = "../login/login.html";
 });
 
-    
 
 

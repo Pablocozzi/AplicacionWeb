@@ -10,7 +10,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     if(email === storedEmail && password === storedPassword) {
         alert("Credenciales correctas");
         localStorage.setItem('isLoggedIn', 'true');  // Guarda el estado de login
-        window.location.href = "./index.html";  // Redirige a la página principal
+        window.location.href = "../index.html";  // Redirige a la página principal
     } else {
         alert("Credenciales incorrectas");
     }
