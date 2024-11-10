@@ -6,8 +6,11 @@ const fetchProductos = async () => {
     try {
         const response = await fetch('./data.json'); 
         const data = await response.json();
+
+        const pageNameInput = document.getElementById('pageName');
+        const categoria = pageNameInput ? pageNameInput.value : '';
         
-        const libros = data.filter(libro => libro.categoria === "Deportes");
+        const libros = data.filter(libro => libro.categoria === categoria);
 
         const cards = libros.map(libro => cardComponent(libro)).join('');
         cardContainer.innerHTML = cards;
