@@ -1,4 +1,4 @@
-import { cardComponent } from "./cardCategorias.js";
+import { cardComponent } from "../componentes/cardCategorias.js";
 
 let cardContainer = document.getElementById('cardContainer');
 
