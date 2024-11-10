@@ -10,8 +10,6 @@ const fetchProductos = async () => {
         const idsPermitidos = [1, 5, 12]; 
         const Filtrados = data.filter(producto => idsPermitidos.includes(producto.id));
 
-        // const libros = data.filter(libro => libro.categoria === "Ciencia ficcion");
-
         const cards = Filtrados.map(libro => cardComponent(libro)).join('');
         cardContainer.innerHTML = cards;
     } catch (error) {
