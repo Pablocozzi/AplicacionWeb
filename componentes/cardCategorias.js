@@ -17,8 +17,16 @@ export const cardComponent = (data) =>{
                             </p>
                             <div class="input-group">
                                 <span class="input-group-text">$${data.precio} </span>
-                                <input type="number" class="form-control" max="5" min="0" placeholder="0">
-                            </div>  
+                                <input type="number" id="quantity-${data.id}" class="form-control quantity-input" max="5" min="1" placeholder="1" value="1">
+                                <button 
+                                class="btn btn-outline-secondary btn-add-cart" 
+                                    data-id="${data.id}" 
+                                    data-titulo="${data.titulo}" 
+                                    data-precio="${data.precio}">
+                                    Agregar al carrito
+                                </button>
+                            
+                                </div>  
                         </div>  
                 </div>
             </div>            

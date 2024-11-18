@@ -1,7 +1,7 @@
 
 
 //creamos url
-const url = "http://127.0.0.1:5500/eBooks/"
+const url = "http://127.0.0.1:5500/"
 
 //array de elementos incluidos en navbar
 const navElements = [
@@ -32,7 +32,10 @@ export const navBar = `
                     }).join('')
                 }
             </ul>            
-            <a href="./login/login.html" class="btn btn-danger">
+            <a href="./carrito.html" class="btn">
+                <i class="bi bi-cart-check"></i>
+            </a>
+            <a href="./login/login.html" class="btn">
                 <i class="bi bi-box-arrow-in-left"></i>
             </a> 
         </div>
