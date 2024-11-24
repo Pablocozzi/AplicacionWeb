@@ -2,16 +2,6 @@ import { cardComponent } from "../componentes/cardCategorias.js";
 
 let cardContainer = document.getElementById('cardContainer');
 
-// function addToCart(id, titulo, precio) {
-    
-//     const cart = JSON.parse(localStorage.getItem('cart')) || []; // Obtiene el carrito actual o inicializa un array vacío
-//     const product = { id, titulo, precio };
-
-//     cart.push(product); // Agrega el producto al carrito
-//     localStorage.setItem('cart', JSON.stringify(cart)); // Guarda el carrito actualizado en localStorage
-//     alert(`Producto "${titulo}" añadido al carrito.`);
-// }
-
 const fetchProductos = async () => {
     try {
         const response = await fetch('./data.json'); 
@@ -38,25 +28,24 @@ const fetchProductos = async () => {
         console.error('Error al cargar los libros:', error);
     }
 
-    function addToCart(id, titulo, precio, cantidad) {
+function addToCart(id, titulo, precio, cantidad) {
         if (!id || !titulo || !precio || cantidad < 1) {
             console.error('Datos inválidos para agregar al carrito:', { id, titulo, precio, cantidad });
             return;
         }
     
-        const cart = JSON.parse(localStorage.getItem('cart')) || []; // Obtiene el carrito actual
+        const cart = JSON.parse(localStorage.getItem('cart')) || []; 
         const existingProductIndex = cart.findIndex(product => product.id === id);
     
         if (existingProductIndex !== -1) {
-            // Si el producto ya está en el carrito, actualiza la cantidad
             cart[existingProductIndex].cantidad += cantidad;
         } else {
-            // Si el producto no está en el carrito, lo agrega
-            const product = { id, titulo, precio, cantidad }; // Crea un objeto producto
-            cart.push(product); // Agrega el producto al carrito
+
+            const product = { id, titulo, precio, cantidad }; 
+            cart.push(product); 
         }
     
-        localStorage.setItem('cart', JSON.stringify(cart)); // Guarda el carrito actualizado
+        localStorage.setItem('cart', JSON.stringify(cart)); 
         alert(`"${titulo}" añadido al carrito. Cantidad: ${cantidad}`);
     }
     

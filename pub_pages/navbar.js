@@ -1,9 +1,6 @@
-
-
-//creamos url
 const url = "http://127.0.0.1:5500/"
 
-//array de elementos incluidos en navbar
+
 const navElements = [
     {tittle: "Inicio", link: `${url}pub_pages/home.html`},
     {tittle: "Cocina", link: `${url}pub_pages/cocina.html`},
@@ -11,8 +8,7 @@ const navElements = [
     {tittle: "Ciencia Ficcion", link: `${url}pub_pages/ficcion.html`},
     {tittle: "Login", link: `${url}pub_pages/login/login.html`}
 ]
-//codigo de navbar, para ingresarla en todas las paginas
-// hay que exportar para despues importar
+
 export const navBar = `
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
