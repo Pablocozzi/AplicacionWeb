@@ -1,25 +1,66 @@
-import { cardComponent } from "../componentes/cardCategorias.js";
+const cardComponent = (data) => {
+    return `
+        <div class="card mb-3 mx-auto" style="max-width: 90%;">
+            <div class="row g-0">
+                <div class="col-md-2">
+                    <img src="${data.imagen}" class="img-fluid rounded-start" alt="${data.titulo}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">${data.titulo}</h5>
+                        <h6 class="card-text">${data.autor}</h6>
+                        <p class="card-text">${data.info}</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    `;
+};
 
 let cardContainer = document.getElementById('cardContainer');
+let productos = [];
 
 const fetchProductos = async () => {
     try {
-        const response = await fetch('./data.json'); 
+        const response = await fetch('./data.json');
         const data = await response.json();
         
-        const idsPermitidos = [1, 5, 12]; 
-        const Filtrados = data.filter(producto => idsPermitidos.includes(producto.id));
+        // Filtrar los productos por categorías
+        const categorias = ["Cocina", "Deportes", "Ciencia ficcion"];
+        
+        // Crear un contenedor para las categorías
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        categoriesContainer.innerHTML = categorias.map(categoria => 
+            `<button class="btn btn-outline-primary category-btn" data-category="${categoria}">${categoria}</button>`
+        ).join('');
 
-        const cards = Filtrados.map(libro => cardComponent(libro)).join('');
-        cardContainer.innerHTML = cards;
+        // Mostrar productos al cargar la página
+        const productosPorCategoria = categorias.map(categoria => {
+            const productosFiltrados = data.filter(producto => producto.categoria === categoria);
+            return { categoria, productos: productosFiltrados.slice(0, 4) };  // Mostrar solo los primeros 4 productos por categoría
+        });
 
-        const buttons = document.querySelectorAll('.btn-add-cart');
-        buttons.forEach(button => {
+        // Generar las cards de productos para cada categoría
+        let cardsHtml = '';
+        productosPorCategoria.forEach(categoria => {
+            cardsHtml += `
+                <div class="category-section">
+                    <h3>${categoria.categoria}</h3>
+                    <div class="row">
+                        ${categoria.productos.map(libro => cardComponent(libro, false)).join('')}
+                    </div>
+                </div>
+            `;
+        });
+
+        cardContainer.innerHTML = cardsHtml;
+
+        // Manejo de botones de categoría para filtrar productos
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        categoryButtons.forEach(button => {
             button.addEventListener('click', (event) => {
-                const { id, titulo, precio } = button.dataset;
-                const quantityInput = document.getElementById(`quantity-${id}`);
-                const quantity = parseInt(quantityInput.value) || 1;
-                addToCart(Number(id), titulo, Number(precio), quantity);
+                const selectedCategory = event.target.dataset.category;
+                filterProductsByCategory(selectedCategory, data);
             });
         });
 
@@ -28,24 +69,11 @@ const fetchProductos = async () => {
     }
 };
 
-function addToCart(id, titulo, precio, cantidad) {
-    if (!id || !titulo || !precio || cantidad < 1) {
-        console.error('Datos inválidos para agregar al carrito:', { id, titulo, precio, cantidad });
-        return;
-    }
-
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingProductIndex = cart.findIndex(product => product.id === id);
-
-    if (existingProductIndex !== -1) {
-        cart[existingProductIndex].cantidad += cantidad;
-    } else {
-        const product = { id, titulo, precio, cantidad }; 
-        cart.push(product); 
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`"${titulo}" añadido al carrito. Cantidad: ${cantidad}`);
-};
+// Función para filtrar productos por categoría
+function filterProductsByCategory(category, allProducts) {
+    const filteredProducts = allProducts.filter(product => product.categoria === category);
+    const cards = filteredProducts.map(libro => cardComponent(libro, false)).join('');
+    cardContainer.innerHTML = cards;
+}
 
 window.addEventListener('load', fetchProductos);

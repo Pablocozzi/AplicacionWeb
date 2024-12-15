@@ -1,15 +1,11 @@
-
-
 function loadCart() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cardContainer = document.getElementById('cardContainer');
-
 
     if (cart.length === 0) {
         cardContainer.innerHTML = '<p>No hay productos en el carrito.</p>';
         return;
     }
-
 
     let cartHtml = '<ul class="list-group">';
     cart.forEach((product, index) => {
@@ -28,7 +24,6 @@ function loadCart() {
     cardContainer.innerHTML = cartHtml;
 }
 
-
 window.removeFromCart = function(index) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     console.log(`Eliminando producto en índice ${index}`);
@@ -36,6 +31,7 @@ window.removeFromCart = function(index) {
     localStorage.setItem('cart', JSON.stringify(cart)); 
     loadCart(); 
 };
+
 window.clearCart = function() {
     console.log('Vaciando carrito.');
     localStorage.removeItem('cart'); 
@@ -44,5 +40,12 @@ window.clearCart = function() {
 
 window.addEventListener('DOMContentLoaded', () => {
     console.log('El DOM ha sido cargado.');
+    loadCart();
+});
+window.addEventListener('load', () => {
+    const productos = JSON.parse(localStorage.getItem('productos'));
+    if (!productos || productos.length === 0) {
+        alert('No se encontraron productos en el almacenamiento local.');
+    }
     loadCart();
 });

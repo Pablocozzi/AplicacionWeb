@@ -1,11 +1,15 @@
 import { cardComponent } from "../componentes/cardCategorias.js";
 
+
 let cardContainer = document.getElementById('cardContainer');
 
 const fetchProductos = async () => {
     try {
         const response = await fetch('./data.json'); 
         const data = await response.json();
+
+        // Guardar los productos en el localStorage para que siempre estén disponibles
+        localStorage.setItem('productos', JSON.stringify(data));
 
         const pageNameInput = document.getElementById('pageName');
         const categoria = pageNameInput ? pageNameInput.value : '';
@@ -27,28 +31,51 @@ const fetchProductos = async () => {
     } catch (error) {
         console.error('Error al cargar los libros:', error);
     }
-
-function addToCart(id, titulo, precio, cantidad) {
-        if (!id || !titulo || !precio || cantidad < 1) {
-            console.error('Datos inválidos para agregar al carrito:', { id, titulo, precio, cantidad });
-            return;
-        }
-    
-        const cart = JSON.parse(localStorage.getItem('cart')) || []; 
-        const existingProductIndex = cart.findIndex(product => product.id === id);
-    
-        if (existingProductIndex !== -1) {
-            cart[existingProductIndex].cantidad += cantidad;
-        } else {
-
-            const product = { id, titulo, precio, cantidad }; 
-            cart.push(product); 
-        }
-    
-        localStorage.setItem('cart', JSON.stringify(cart)); 
-        alert(`"${titulo}" añadido al carrito. Cantidad: ${cantidad}`);
-    }
-    
 };
 
+function addToCart(id, titulo, precio, cantidad) {
+    const productos = JSON.parse(localStorage.getItem('productos')) || [];
+    const producto = productos.find(p => p.id === id);
+
+    if (!producto) {
+        alert('Producto no encontrado.');
+        return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingProductIndex = cart.findIndex(product => product.id === id);
+    const existingProduct = existingProductIndex !== -1 ? cart[existingProductIndex] : null;
+    const quantityInCart = existingProduct ? existingProduct.cantidad : 0;
+
+    // Calcular la cantidad máxima que se puede agregar
+    const maxQuantity = Math.min(producto.stock - quantityInCart, producto.stock);  // No puede superar el stock disponible ni el límite de 10
+
+    // Verificar que la cantidad no exceda el máximo permitido
+    if (cantidad > maxQuantity) {
+        alert(`No puedes agregar más de ${maxQuantity} unidad${maxQuantity > 1 ? 'es' : ''} de este producto.`);
+        return;
+    }
+
+    // Si el producto ya está en el carrito, se suman las cantidades
+    if (existingProductIndex !== -1) {
+        cart[existingProductIndex].cantidad += cantidad;
+    } else {
+        // Si el producto no está en el carrito, lo agregamos
+        cart.push({ id, titulo, precio, cantidad });
+    }
+
+    // Actualizar el carrito en el localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Actualizar el stock del producto en el localStorage
+    producto.stock -= cantidad;
+    localStorage.setItem('productos', JSON.stringify(productos));
+
+    alert(`"${titulo}" añadido al carrito. Cantidad: ${cantidad}`);
+
+    fetchProductos();  // Recargar los productos para mostrar el stock actualizado
+}
+
 window.addEventListener('load', fetchProductos);
+
+
