@@ -31,6 +31,12 @@
         </div>
     </section>
 
+    <script>
+        if (!localStorage.getItem('productos')) {
+            localStorage.setItem('productos', JSON.stringify([]));
+        }
+    </script>
+
     <script type="module" src="./index.js"></script>
     <script type="module" src="./data/homeData.js"></script>
     <script type="module" src="./carrito.js"></script>
