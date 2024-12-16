@@ -30,7 +30,7 @@ export const cardComponent = (data) => {
                             </small>
                             <br>
                             <small class="text-body-secondary">
-                                ${isMaxQuantityReached ? 'Producto agotado' : `Puedes agregar hasta ${maxQuantity} unidad${maxQuantity > 1 ? 'es' : ''}.`}
+                                ${isMaxQuantityReached ? 'Producto agotado' : `Puedes agregar ${maxQuantity} unidad${maxQuantity > 1 ? 'es' : ''} mas.`}
                             </small> 
                         </p>
                         <div class="input-group">

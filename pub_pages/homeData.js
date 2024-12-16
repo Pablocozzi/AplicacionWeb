@@ -1,5 +1,6 @@
 const cardComponent = (data) => {
     return `
+
         <div class="card mb-3 mx-auto" style="max-width: 90%;">
             <div class="row g-0">
                 <div class="col-md-2">
@@ -9,6 +10,7 @@ const cardComponent = (data) => {
                     <div class="card-body">
                         <h5 class="card-title">${data.titulo}</h5>
                         <h6 class="card-text">${data.autor}</h6>
+                        <h7>Categoria: ${data.categoria}</h3>
                         <p class="card-text">${data.info}</p>
                     </div>
                 </div>
@@ -45,7 +47,6 @@ const fetchProductos = async () => {
         productosPorCategoria.forEach(categoria => {
             cardsHtml += `
                 <div class="category-section">
-                    <h3>${categoria.categoria}</h3>
                     <div class="row">
                         ${categoria.productos.map(libro => cardComponent(libro, false)).join('')}
                     </div>
