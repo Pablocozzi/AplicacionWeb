@@ -1,11 +1,11 @@
-import { cardComponent } from "../componentes/cardCategorias.js";
+import { cardComponent } from "../../componentes/cardCategorias.js";
 
 
 let cardContainer = document.getElementById('cardContainer');
 
 const fetchProductos = async () => {
     try {
-        const response = await fetch('./data.json'); 
+        const response = await fetch('../../pub_pages/data/data.json'); 
         const data = await response.json();
 
         // Guardar los productos en el localStorage para que siempre estén disponibles

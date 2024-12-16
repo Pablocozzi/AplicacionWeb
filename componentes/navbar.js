@@ -2,11 +2,11 @@ const url = "http://127.0.0.1:5500/"
 
 
 const navElements = [
-    {tittle: "Inicio", link: `${url}pub_pages/home.html`},
-    {tittle: "Cocina", link: `${url}pub_pages/cocina.html`},
-    {tittle: "Deportes", link: `${url}pub_pages/deportes.html`},
-    {tittle: "Ciencia Ficcion", link: `${url}pub_pages/ficcion.html`},
-    {tittle: "Login", link: `${url}pub_pages/login/login.html`}
+    {tittle: "Inicio", link: `${url}./pub_pages/home.html`},
+    {tittle: "Cocina", link: `${url}./pub_pages/cocina.html`},
+    {tittle: "Deportes", link: `${url}./pub_pages/deportes.html`},
+    {tittle: "Ciencia Ficcion", link: `${url}./pub_pages/ficcion.html`},
+    {tittle: "Login", link: `${url}./pub_pages/login/login.html`}
 ]
 
 export const navBar = `

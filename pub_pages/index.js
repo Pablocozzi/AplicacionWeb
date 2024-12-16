@@ -1,5 +1,5 @@
 // hay que exportar para despues importar
-import { navBar } from "./navbar.js"
+import { navBar } from "../componentes/navbar.js"
 
 //generamos el contenedor con header
 let navContainer = document.querySelector('header')
